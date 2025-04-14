@@ -39,11 +39,21 @@ function App() {
       .post("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts", formData)
       .then((response) => {
         console.log("Dati inviati:", response.data);
+        // il messaggio a schermo scopare dopo 3sec
         setMessage("Post inviato!");
+        setTimeout(() => setMessage(""), 3000);
+        // i campi del form tornano vuoti depo l'invio
+        setFormData({
+          author: "",
+          title: "",
+          body: "",
+          public: false,
+        });
       })
+
       .catch((error) => {
         console.error("Errore durante l'invio:", error);
-        setMessage("Errore durante l'invio del post.");
+        setMessage("Errore durante l'invio del post, riprova.");
       });
   }
 
